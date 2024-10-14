@@ -1,0 +1,86 @@
+<html>
+<head>
+    <title>精靈圖</title>
+    <meta charset="UTF-8">
+    <style>
+        @keyframes role1walk{
+            0%{background-position-x:0px ;}
+            100%{background-position-x:-144px ;}
+        }
+        @keyframes role2walk{
+            0%{background-position-x:-144px ;}
+            100%{background-position-x:-288px ;}
+        }
+        @keyframes role3walk{
+            0%{background-position-x:-288px ;}
+            100%{background-position-x:-432px ;}
+        }
+        @keyframes role4walk{
+            0%{background-position-x:-432px ;}
+            100%{background-position-x:-576px ;}
+        }
+        #role1{
+            background-image: url(sprite1.png);
+            width: 48px;
+            height: 72px;
+            animation: role1walk 0.5s steps(3) infinite;
+        }
+        #role2{
+            background-image: url(sprite1.png);
+            width: 48px;
+            height: 72px;
+            animation: role2walk 0.5s steps(3) infinite;
+        }
+        #role3{
+            background-image: url(sprite1.png);
+            width: 48px;
+            height: 72px;
+            animation: role3walk 0.5s steps(3) infinite;
+        }
+        #role4{
+            background-image: url(sprite1.png);
+            width: 48px;
+            height: 72px;
+            animation: role4walk 0.5s steps(3) infinite;
+        }
+        #role5{
+            background-image: url(sprite1.png);
+            width: 48px;
+            height: 72px;
+            animation: role1walk 0.5s steps(3) infinite;
+            background-position-y: -288px;
+        }
+        #role6{
+            background-image: url(sprite1.png);
+            width: 48px;
+            height: 72px;
+            animation: role2walk 0.5s steps(3) infinite;
+            background-position-y: -288px;
+        }
+        #role7{
+            background-image: url(sprite1.png);
+            width: 48px;
+            height: 72px;
+            animation: role3walk 0.5s steps(3) infinite;
+            background-position-y: -288px;
+        }
+        #role8{
+            background-image: url(sprite1.png);
+            width: 48px;
+            height: 72px;
+            animation: role4walk 0.5s steps(3) infinite;
+            background-position-y: -288px;
+        }
+    </style>
+</head>
+<body>
+    <div id="role1"></div>
+    <div id="role2"></div>
+    <div id="role3"></div>
+    <div id="role4"></div>
+    <div id="role5"></div>
+    <div id="role6"></div>
+    <div id="role7"></div>
+    <div id="role8"></div>
+</body>
+</html>
