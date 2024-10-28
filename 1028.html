@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>表單控制項</title>
+    <meta charset="UTF-8">
+    <style>
+        input {
+            margin:5px;
+        }
+        #mytext {
+            font-size: 20pt;
+            color: black;
+        }
+        #rand-num {
+            font-size: 48pt;
+        }
+    </style>
+    <script>
+        function get(id) {
+            return document.getElementById(id);
+        }
+        function getRandNum(min,max) {
+            return Math.floor(Math.random()*(max-min+1))+min;
+        }
+        function get(id) {
+            return document.getElementById(id)
+        }
+        function changeFontsize() {
+            get("range-num").innerHTML=get("rg-font-size").value+"pt";
+            get("mytext").style.fontSize=get("rg-font-size").value+"pt";
+        }
+        function changeFontcolor() {
+            get("mytext").style.color=get("color-font").value;
+        }
+        function check() {
+            if(get("cd-text").checked) {
+                if(get("user-text").value.length>0) {
+                get("mytext").innerHTML=get("user-text").value;
+                } else {
+                    alert("你沒有輸入文字");
+                    get("cd-text").checked=false;
+                }
+            } else {
+                get("mytext").innerHTML="預設文字";
+            }
+        }
+        function getRand() {
+            setTimeout(clearInterval,3000,
+                setInterval(function() {
+                    get("rand-num").innerHTML=getRandNum(1,99);
+                },10)
+            )
+        }
+    </script>
+</head>
+<body>
+    <div id="mytext">預設文字</div>
+    <input type="text" id="user-text"> <input type="checkbox" id="cd-text" oninput="check();">套用 <br>
+    <input type="color" id="color-font" oninput="changeFontcolor();"> <br>
+    <input type="range" id="rg-font-size" min="6" max="100" value="20" oninput="changeFontsize();"><span id="range-num">20</span>
+    <hr>
+    <div id="rand-num">0</div>
+    <button onclick="getRand()">亂數</button>
+
+</body>
+</html>
