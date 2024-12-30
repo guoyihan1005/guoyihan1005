@@ -1,13 +1,13 @@
 <html>
 <head>
-    <title>1202上課筆記-鍵盤控制(二)</title>
+    <title>期末作業</title>
     <meta charset="UTF-8">
     <style>
         #worldmap {
             background: url("pic/grass.jpg");
             background-size: 200px 140px;
-            width: 800px;
-            height: 800px;
+            width: 1900px;
+            height: 903px;
             position: relative;
         }
         @keyframes rolewalk{
@@ -21,10 +21,20 @@
             position: absolute;
             animation: rolewalk 0.3s steps(3) infinite;
         }
+        .bullet {
+            background: url("pic/bullet.png");
+            background-size: 36px 8px;
+            width: 36px;
+            height: 8px;
+            position: absolute;
+        }
     </style>
     <script>
         function get(id) {
             return document.getElementById(id);
+        }
+        function getRandNum(min,max) {
+            return Math.floor(Math.random()*(max-min+1))+min;
         }
         function mykeydown() {
             event.preventDefault();
@@ -56,6 +66,25 @@
             get("worldmap").style.backgroundPositionX=bgpos.x+"px";
             get("worldmap").style.backgroundPositionY=bgpos.y+"px";
         }
+        function bulletcreate() {
+            var b=document.createElement("div");
+            b.className="bullet";
+            b.bpos={x:1800,y:getRandNum(0,894)};
+            b.style.left=b.bpos.x+"px";
+            b.style.top=b.bpos.y+"px";
+            b.life=setInterval(bulletmove,10,b);
+            get("worldmap").appendChild(b);
+        }
+        function bulletmove(b) {
+            if(b.bpos.x <= 0) {
+                clearInterval(b.life);
+                b.remove();
+            } else {
+                b.bpos.x--;
+                b.style.left=b.bpos.x+"px";
+                b.style.top=b.bpos.y+"px";
+            }
+        }
         function gameInit() {
             pos={x:376,y:364};
             bgpos={x:0,y:0};
@@ -64,11 +93,13 @@
             dir={"ArrowUp":0,"ArrowDown":0,"ArrowLeft":0,"ArrowRight":0};
             setInterval(bgmove,10);
             setInterval(walk,10);
+            setInterval(bulletcreate,1000);
         }
     </script>
 </head>
 <body onload="gameInit();" onkeydown="mykeydown();" onkeyup="mykeyup();">
     <div id="worldmap">
+        <div>得分:<span id="score">0</span></div>
         <div id="role"></div>
     </div>
 </body>
