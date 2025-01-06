@@ -76,14 +76,42 @@
             get("worldmap").appendChild(b);
         }
         function bulletmove(b) {
+            var bullets=Array.from(document.getElementsByClassName("role")).filter(function(){
+                return (pos.x<this.x && pos.x+48>this.x) && (pos.y+40>=this.y);
+            },b.pos);
+            if(bullets.length>0) {
+                bullets.forEach(function(){
+                    clearInterval(b.life);
+                    b.remove();
+                });
+            }
             if(b.bpos.x <= 0) {
                 clearInterval(b.life);
                 b.remove();
+                scoreplus();
             } else {
-                b.bpos.x--;
+                b.bpos.x=b.bpos.x-3;
+                b.style.left=b.bpos.x+"px";
+                b.style.top=b.bpos.y+"px";
+            } if(dir["ArrowLeft"]==1){
+                b.bpos.x=b.bpos.x+2;
+                b.style.left=b.bpos.x+"px";
+                b.style.top=b.bpos.y+"px";
+            } if(dir["ArrowRight"]==1){
+                b.bpos.x=b.bpos.x-2;
                 b.style.left=b.bpos.x+"px";
                 b.style.top=b.bpos.y+"px";
             }
+        }
+        function scoreplus() {
+            if(dir["ArrowLeft"]==1){
+                gameScore+=1;
+            } else if(dir["ArrowRight"]==1){
+                gameScore+=3;
+            }else{
+                gameScore+=2;
+            }
+            get("score").innerHTML=gameScore;
         }
         function gameInit() {
             pos={x:376,y:364};
@@ -93,7 +121,11 @@
             dir={"ArrowUp":0,"ArrowDown":0,"ArrowLeft":0,"ArrowRight":0};
             setInterval(bgmove,10);
             setInterval(walk,10);
-            setInterval(bulletcreate,1000);
+            setInterval(bulletcreate,500);
+            gamestart()
+        }
+        function gamestart(){
+            gameScore=0;
         }
     </script>
 </head>
