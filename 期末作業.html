@@ -76,11 +76,11 @@
             get("worldmap").appendChild(b);
         }
         function bulletmove(b) {
-            var bullets=Array.from(document.getElementsByClassName("role")).filter(function(){
-                return (pos.x<this.x && pos.x+48>this.x) && (pos.y+40>=this.y);
+            var bullets=Array.from(document.getElementsByClassName("role")).filter(function(b){
+                return (pos.x+48>=this.x&&pos.x-36<=this.x) && (pos.y-8>=this.y&&pos.y+72<=this.y);
             },b.pos);
             if(bullets.length>0) {
-                bullets.forEach(function(){
+                bullets.forEach(function(b){
                     clearInterval(b.life);
                     b.remove();
                 });
